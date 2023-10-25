@@ -1,6 +1,8 @@
 
 file_path = "data.txt"
-max_val = 0
+max_val_1 = 0
+max_val_2 = 0
+max_val_3 = 0
 current_val = 0
 data = open(file_path, 'r')
 last_elf = False
@@ -18,11 +20,18 @@ while not last_elf:
             last_elf = True
             line_val = '\n'
 
-    if current_val > max_val:
-        max_val = current_val
+    if current_val > max_val_3:
+        if current_val > max_val_2:
+            if current_val > max_val_1:
+                max_val_3 = max_val_2
+                max_val_2 = max_val_1
+                max_val_1 = current_val
+            else:
+                max_val_3 = max_val_2
+                max_val_2 = current_val    
+        else:
+            max_val_3 = current_val       
     
     current_val = 0
 
-print("The elf carrying the most calories carrys " + str(max_val) + " calories!")       
-
-
+print("The top 3 elfs carrying the most calories carry " + str(max_val_1 + max_val_2 + max_val_3) + " calories!")       
